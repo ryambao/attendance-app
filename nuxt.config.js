@@ -39,14 +39,13 @@ export default {
   // Firebase settings
   firebase: {
     config: {
-      apiKey: "AIzaSyBZUxUszIsEFTYfzp7JKMBvdJ4QblHQZOs",
-      authDomain: "attendance-app-16be5.firebaseapp.com",
-      databaseURL: "https://attendance-app-16be5-default-rtdb.firebaseio.com",
-      projectId: "attendance-app-16be5",
-      storageBucket: "attendance-app-16be5.appspot.com",
-      messagingSenderId: "749233251129",
-      appId: "1:749233251129:web:60c90c0d2f164f80b53ee8",
-      measurementId: "G-JSST0HS0M0",
+      apiKey: process.env.apiKey,
+      authDomain: process.env.authDomain,
+      projectId: process.env.projectId,
+      storageBucket: process.env.storageBucket,
+      messagingSenderId: process.env.messagingSenderId,
+      appId: process.env.appId,
+      measurementId: process.env.measurementId,
     },
     services: {
       auth: true,

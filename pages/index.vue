@@ -34,6 +34,7 @@ export default {
         .then((userCredential) => {
           // Signed in 
           this.$fire.database.ref(`users/${userCredential.user.uid}`).set({
+            // Add user credentials
             firstName: user.first_name,
             lastName: user.last_name,
             email: user.email,
