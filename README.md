@@ -2,6 +2,8 @@
 
 ## Build Setup
 
+# add firebase credentials to .env
+
 ```bash
 # install dependencies
 $ npm install
