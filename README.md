@@ -1,10 +1,8 @@
 # attendance-app
 
-## Build Setup
-
+```bash
 # add firebase credentials to .env
 
-```bash
 # install dependencies
 $ npm install
 
