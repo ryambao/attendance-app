@@ -8,6 +8,7 @@
 import SignIn from '../components/user/signIn.vue';
 import SignUp from '../components/user/signUp.vue';
 export default {
+  layout: 'LoginLayout',
   components: { SignIn, SignUp },
   data() {
     return {
@@ -24,9 +25,14 @@ export default {
   methods: {
     signIn(user) {
       this.$fire.auth.signInWithEmailAndPassword(user.email, user.password)
+      // .then(()=> {
+      //   this.send();
+      //   console.log('wewewe')
+      // })
         .catch((error) => {
           console.error('Error in signing user: ', error.code, error.message);
         });
+
     },
     signUp(user) {
       this.$fire.auth.createUserWithEmailAndPassword(user.email, user.password)
@@ -47,6 +53,13 @@ export default {
     toggle() {
       this.toggleForm = !this.toggleForm;
     },
+    send() {
+      this.$mail.send({
+        from: this.email,
+        subject: 'Contact form message',
+        text: this.message,
+      })
+    }
   },
 }
 </script>
