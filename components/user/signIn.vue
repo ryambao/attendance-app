@@ -89,6 +89,7 @@
 </template>
 <script>
 export default {
+  layout: 'LoginLayout',
   props: {
     toggle: Function,
     signIn: Function,
