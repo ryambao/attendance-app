@@ -1,4 +1,5 @@
 <template>
+  <div  class="min-h-screen">
   <div class="card">
     <h1>Hello {{ displayName }}!</h1>
     <p>time duration: {{ timer }}</p>
@@ -29,6 +30,7 @@
 
       <button @click="signOut">Logout</button>
     </div>
+  </div>
   </div>
 </template>
 
