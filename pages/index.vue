@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Hello World!</h1>
     <SignIn v-if="!toggleForm" :toggle="toggle" :signIn="signIn" />
     <SignUp v-if="toggleForm" :toggle="toggle" :signUp="signUp" />
   </div>
@@ -32,7 +31,7 @@ export default {
     signUp(user) {
       this.$fire.auth.createUserWithEmailAndPassword(user.email, user.password)
         .then((userCredential) => {
-          // Signed in 
+          // Signed in
           this.$fire.database.ref(`users/${userCredential.user.uid}`).set({
             // Add user credentials
             firstName: user.first_name,
