@@ -40,7 +40,7 @@
             border-da-color hover:border-transparent hover:text-white hover:bg-da-color
             mt-4 lg:mt-0"
             >
-            Login
+            Logout
           </nuxt-link>
         </div>
       </div>
