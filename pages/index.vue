@@ -1,7 +1,7 @@
 <template>
   <div>
-    <SignIn v-if="!toggleForm" :toggle="toggle" :signIn="signIn" />
-    <SignUp v-if="toggleForm" :toggle="toggle" :signUp="signUp" />
+    <SignIn v-if="!toggleForm" :toggle="toggle" :signIn="signIn" :errorMessage="errorMessage" />
+    <SignUp v-if="toggleForm" :toggle="toggle" :signUp="signUp" :errorMessage="errorMessage" />
   </div>
 </template>
 <script>
@@ -13,6 +13,7 @@ export default {
   data() {
     return {
       toggleForm: false,
+      errorMessage: '',
     };
   },
   mounted() {
@@ -30,9 +31,22 @@ export default {
       //   console.log('wewewe')
       // })
         .catch((error) => {
-          console.error('Error in signing user: ', error.code, error.message);
+          console.error('Error in signing user: ', error.code);
+          switch (error.code) {
+            case 'auth/invalid-email':
+              this.errorMessage = 'Invalid Email Address'
+              break;
+            case 'auth/user-disabled':
+              this.errorMessage = 'Account has been disabled'
+              break;
+            case 'auth/user-not-found':
+              this.errorMessage = 'Email not found'
+              break;
+            case 'auth/wrong-password':
+              this.errorMessage = 'Wrong password'
+              break;
+          }
         });
-
     },
     signUp(user) {
       this.$fire.auth.createUserWithEmailAndPassword(user.email, user.password)
@@ -47,7 +61,15 @@ export default {
           this.$router.push('/profile');
         })
         .catch((error) => {
-          console.error('Error in creating user: ', error.code, error.message);
+          console.error('Error in creating user: ', error.code);
+          switch (error.code) {
+            case 'auth/email-already-in-use':
+              this.errorMessage = 'Email already in use.'
+              break;
+            case 'auth/weak-password':
+              this.errorMessage = 'Password is Weak'
+              break;
+          }
         });
     },
     toggle() {
