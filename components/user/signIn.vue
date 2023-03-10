@@ -29,6 +29,10 @@
             v-model="user.email"
             required
             >
+            <span
+            class="text-left block text-xs text-red-500"
+            v-if="errorMessage != 'Wrong password'"
+            >{{ errorMessage }}</span>
           </div>
           <div>
             <label for="password"
@@ -43,9 +47,14 @@
             bg-gray-50 text-gray-900 sm:text-sm rounded-lg block w-full
             p-2.5 border border-gray-300 focus:outline-none focus:ring-2
             focus:ring-sky-500 focus:border-transparent"
+            :class="errorMessage === 'Wrong password' ? 'border-red-300' : ''"
             v-model="user.password"
             required
             >
+            <span
+            class="text-left block text-xs text-red-500"
+            v-show="errorMessage === 'Wrong password'"
+            >{{ errorMessage }}</span>
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-start">
@@ -93,6 +102,7 @@ export default {
   props: {
     toggle: Function,
     signIn: Function,
+    errorMessage: String
   },
   data() {
     return {
