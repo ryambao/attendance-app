@@ -18,7 +18,6 @@
             placeholder="First Name"
             v-model="user.first_name"
             required
-
             >
           </div>
           <div>
@@ -46,10 +45,15 @@
             bg-gray-50 text-gray-900 sm:text-sm rounded-lg block w-full
             p-2.5 border border-gray-300 focus:outline-none focus:ring-2
             focus:ring-sky-500 focus:border-transparent"
+            :class="errorMessage === 'Email already in use.' ? 'border-red-300' : ''"
             placeholder="name@company.com"
             v-model="user.email"
             required
             >
+            <span
+            class="text-left block text-xs text-red-500"
+            v-if="errorMessage !== 'Wrong password'"
+            >{{ errorMessage }}</span>
           </div>
           <div>
             <label for="password"
@@ -67,6 +71,10 @@
             v-model="user.password"
             required
             >
+            <span
+            class="text-left block text-xs text-red-500"
+            v-if="errorMessage === 'Wrong password'"
+            >{{ errorMessage }}</span>
           </div>
           <div class="flex items-center justify-between">
             <div class="flex items-start">
@@ -95,7 +103,7 @@
           w-full border border-gray-300 text-gray-500 bg-primary-600 hover:bg-sky-500 hover:text-white
           focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg
           text-sm px-5 py-2.5 text-center">
-            Sign in
+            Sign up
           </button>
           <p class="text-sm font-light text-gray-500 ">
             Already have an account yet?
@@ -124,6 +132,7 @@ export default {
   props: {
     toggle: Function,
     signUp: Function,
+    errorMessage: String
   },
   data() {
     return {
@@ -135,5 +144,9 @@ export default {
       },
     };
   },
+
+  mounted() {
+    this.errorMessage = ''
+  }
 }
 </script>
