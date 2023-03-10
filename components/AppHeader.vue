@@ -26,22 +26,22 @@
               v-for="item in navigations"
               :key="item.id"
               :item="item"
-              :id="item.href"
               >
             </menu-item>
           </Menu>
         </div>
         <div>
-          <nuxt-link
+          <button
             to="/"
             class=
             "
             inline-block text-sm px-4 py-2 leading-none border rounded text-da-color
             border-da-color hover:border-transparent hover:text-white hover:bg-da-color
             mt-4 lg:mt-0"
+            @click="signOut"
             >
             Logout
-          </nuxt-link>
+        </button>
         </div>
       </div>
     </nav>
@@ -55,7 +55,7 @@ export default {
         {
           id: 1,
           name: "My Logs",
-          href: "my-logs",
+          href: "mylogs",
         },
         {
           id: 2,
@@ -69,7 +69,10 @@ export default {
       showMenu(){
         const menu = document.getElementById('menu');
         menu.classList.toggle('hidden');
-      }
+      },
+      signOut() {
+      this.$fire.auth.signOut();
+    },
     }
 
 }
