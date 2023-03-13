@@ -36,6 +36,20 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/firebase',
+    '@nuxtjs/axios',
+    ['nuxt-mail', {
+      message: {
+        to: 'me@gmail.com',
+      },
+      smtp: {
+        host: 'sandbox.smtp.mailtrap.io',
+        port: 2525,
+        auth: {
+          user: '614129ef705be3',
+          pass: '948fe447159348'
+        },
+      },
+    }],
   ],
 
   // Firebase settings
